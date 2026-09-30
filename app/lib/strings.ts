@@ -15,6 +15,8 @@ export const S = {
     organiserLine: "Set up your four samples and get the code to give out.",
     signIn: "Sign in →",
     how: "How it works",
+    guideProducer: "The producer\u2019s guide, with pictures",
+    guideGuest: "How to take part, with pictures",
     howLines: [
       "The producer puts four samples on the table, marked A, B, C and D: their own product and three others at a similar price. Nobody tasting knows which is which.",
       "Each person tastes two, says which they prefer, tastes the other two, says which they prefer, then tastes those two winners and picks one.",
@@ -84,6 +86,8 @@ export const S = {
     signInFirst: "Sign in to see this page.",
     signIn: "Sign in →",
     resetDemo: "Reset the demonstration",
+    printCard: "Print the table card",
+    guide: "The producer\u2019s guide",
     resetDemoDone: "Reset. A clean demonstration is ready.",
     archive: "Archive this tasting",
     archived: "Archived. It no longer counts in your results.",
@@ -141,6 +145,7 @@ export const S = {
     colProduct: "Product",
     colTastings: "Tastings",
     colTasters: "Tasters",
+    tastingsTasters: (t: number, n: number) => `${t} ${t === 1 ? "tasting" : "tastings"}, ${n} ${n === 1 ? "person" : "people"}`,
     noResults: "No results yet.",
     changeHead: "Change your passcode",
     changeLede: "Set your own passcode. It replaces the one you signed in with.",
@@ -153,6 +158,7 @@ export const S = {
     demoHead: "Demonstration",
     demoLine: "A tasting that is always ready, with four samples on the table.",
     demoOpen: "Open the demonstration",
+    guide: "Guide",
   },
 };
 

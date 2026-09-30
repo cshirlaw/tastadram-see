@@ -805,3 +805,50 @@ h1, h2, h3, h4 {
 .st-bar { height: 6px; background: var(--paper-2); border-radius: 3px; overflow: hidden; margin-top: 6px; }
 .st-bar > span { display: block; height: 100%; background: var(--ink); }
 .rc-input { width: 100%; height: 44px; padding: 0 14px; border: 1px solid var(--line); border-radius: 2px; background: var(--paper); color: var(--ink); font: 500 15px var(--sans); margin-top: 4px; }
+
+/* ---- tastaDRAM See: the printed producer's guide (/guide/print) ---- */
+.gp { max-width: 820px; margin: 0 auto; padding: 24px; color: var(--ink); background: #fff; }
+.gp-page { display: grid; grid-template-columns: 1fr 340px; gap: 36px; align-items: start; padding: 36px 0; border-bottom: 1px solid var(--line); }
+.gp-cover { display: block; padding-top: 12px; }
+.gp-cover h1 { font-size: 44px; line-height: 1.05; letter-spacing: -0.03em; margin: 40px 0 0; font-weight: 600; }
+.gp-lede { font-size: 19px; line-height: 1.5; color: var(--ink-soft); margin: 16px 0 0; max-width: 560px; }
+.gp-toc { margin: 32px 0 0; padding-left: 22px; font-size: 17px; line-height: 1.9; }
+.gp-small { margin-top: 36px; font-size: 13px; color: var(--ink-faint); }
+.gp-num { font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--brass); font-weight: 600; }
+.gp-text h2 { font-size: 34px; line-height: 1.1; letter-spacing: -0.02em; margin: 10px 0 0; font-weight: 600; }
+.gp-text p { font-size: 18px; line-height: 1.55; color: var(--ink-soft); margin: 14px 0 0; }
+.gp-shot { border: 1px solid var(--line); border-radius: 14px; overflow: hidden; }
+.gp-shot img { display: block; width: 100%; height: auto; }
+@media (max-width: 640px) { .gp-page { grid-template-columns: 1fr; } }
+@media print {
+  .gp { padding: 0; max-width: none; }
+  .gp-page { break-after: page; border: 0; padding: 0; grid-template-columns: 1fr 88mm; gap: 12mm; }
+  .gp-page:last-child { break-after: auto; }
+  .gp-shot { border: 0; border-radius: 0; }
+  .gp-shot img { width: auto; max-width: 100%; max-height: 245mm; border: 1px solid var(--line); border-radius: 3mm; }
+  .gp-noprint { display: none !important; }
+}
+
+/* ---- tastaDRAM See: the A5 table card (/p/<code>/card) ---- */
+.card-a5 { width: 148mm; min-height: 210mm; margin: 0 auto; padding: 10mm; background: #fff; color: var(--ink); box-sizing: border-box; }
+.card-head { display: flex; justify-content: space-between; align-items: center; gap: 8mm; }
+.card-name { font-size: 12px; color: var(--ink-soft); text-align: right; }
+.card-a5 h1 { font-size: 22px; line-height: 1.15; letter-spacing: -0.02em; margin: 7mm 0 0; font-weight: 600; }
+.card-join { display: grid; grid-template-columns: 38mm 1fr; gap: 6mm; align-items: center; margin-top: 6mm; padding: 5mm; background: var(--paper-2); border-radius: 3mm; }
+.card-join img { width: 38mm; height: 38mm; display: block; }
+.card-k { font-size: 15px; font-weight: 600; margin: 0; }
+.card-or { font-size: 12.5px; color: var(--ink-soft); margin: 2mm 0 0; }
+.card-code { font-size: 26px; font-weight: 600; letter-spacing: 0.06em; margin: 2mm 0 0; }
+.card-steps { list-style: none; padding: 0; margin: 6mm 0 0; display: grid; grid-template-columns: 1fr 1fr; gap: 5mm 6mm; }
+.card-steps li { display: flex; flex-direction: column; gap: 2mm; }
+.card-step-text { font-size: 12px; line-height: 1.4; color: var(--ink-soft); }
+.card-step-text b { color: var(--ink); }
+.card-n { display: inline-flex; width: 5mm; height: 5mm; border-radius: 50%; background: var(--ink); color: #fff; font-size: 10px; font-weight: 600; align-items: center; justify-content: center; margin-right: 1.5mm; }
+.card-steps img { width: 100%; height: auto; border: 1px solid var(--line); border-radius: 2mm; }
+.card-foot { font-size: 10.5px; color: var(--ink-faint); margin-top: 6mm; }
+@media print {
+  .card-a5 { margin: 0; min-height: 0; height: 209mm; overflow: hidden; padding: 9mm 10mm; }
+  .card-steps li { break-inside: avoid; }
+  .tw-app { display: block !important; min-height: 0 !important; }
+  .card-noprint { display: none !important; }
+}

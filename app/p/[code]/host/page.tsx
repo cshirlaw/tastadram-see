@@ -239,6 +239,10 @@ export default function HostPage() {
             </button>
           )}
           {msg && <div className="tw-ok">{msg}</div>}
+          <div style={{ display: "flex", gap: 8, flexWrap: "wrap", marginTop: 14 }}>
+            <a className="tw-grade" style={chip} href={`/p/${sess.code}/card`} target="_blank" rel="noreferrer">{h.printCard}</a>
+            <Link className="tw-grade" style={chip} href="/guide">{h.guide}</Link>
+          </div>
           <p className="tw-lede" style={{ fontSize: 13, marginTop: 18, color: "var(--fg-faint)" }}>
             <Link href="/admin" style={{ color: "var(--fg-soft)" }}>{h.sessionsList}</Link>
             {" · "}<button type="button" className="link-btn" onClick={signOut} style={{ color: "var(--fg-soft)" }}>{h.signOut}</button>

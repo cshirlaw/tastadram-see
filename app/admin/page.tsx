@@ -169,7 +169,7 @@ export default function AdminPage() {
     <div className="tw-admin">
       <div className="tw-top">
         <BrandMark />
-        <span className="tw-exit">{me.name}</span>
+        <span className="tw-exit">{me.name} · <Link href="/guide" style={{ color: "var(--gold-deep)" }}>{a.guide}</Link></span>
       </div>
 
       {newCode && (
@@ -231,7 +231,7 @@ export default function AdminPage() {
                 <input className="tw-input" value={s.producer} onChange={(e) => setS(i, "producer", e.target.value)} placeholder={i === 0 ? a.producerOfPh : ""} />
               </div>
             </div>
-            <div style={{ display: "grid", gridTemplateColumns: "1fr 100px 110px", gap: 12, marginTop: 8 }}>
+            <div style={{ display: "grid", gridTemplateColumns: "1.2fr 0.8fr 1fr", gap: 12, marginTop: 8 }}>
               <div>
                 <label className="tw-label">{a.category}</label>
                 <input className="tw-input" value={s.category} onChange={(e) => setS(i, "category", e.target.value)} placeholder={i === 0 ? a.categoryPh : ""} />
@@ -258,21 +258,19 @@ export default function AdminPage() {
           <p className="tw-lede" style={{ fontSize: 15 }}>{a.noSessions}</p>
         ) : (
           <table className="tw-table" style={{ marginTop: 10 }}>
-            <thead><tr><th>{a.colWhen}</th><th>{a.colTasting}</th><th style={{ textAlign: "right" }}>{a.colPeople}</th><th>{a.colCode}</th><th></th></tr></thead>
+            <thead><tr><th>{a.colTasting}</th><th style={{ textAlign: "right" }}>{a.colPeople}</th><th></th></tr></thead>
             <tbody>
               {sessions.map((s) => (
                 <tr key={s.id} style={{ opacity: s.archived ? 0.55 : 1 }}>
-                  <td style={{ whiteSpace: "nowrap" }}>{when(s.created_at)}</td>
                   <td>
-                    {s.name}{s.location ? <span style={{ color: "var(--fg-faint)" }}> · {s.location}</span> : null}
-                    {me.role === "hq" ? <div style={{ fontSize: 12, color: "var(--fg-faint)" }}>{s.host_name}</div> : null}
-                    <div style={{ fontSize: 12.5, color: "var(--fg-faint)" }}>
-                      {(s.samples ?? []).map((x) => `${x.mat} ${x.name}${x.mine ? " ★" : ""}`).join(" · ")}
+                    {s.name}
+                    <div style={{ fontSize: 12.5, color: "var(--fg-faint)", marginTop: 2 }}>
+                      {[when(s.created_at), s.location, me.role === "hq" ? s.host_name : null].filter(Boolean).join(" · ")}
+                      {" · "}<span className="tw-code" style={{ fontSize: 13 }}>{s.event_code}</span>
                     </div>
                   </td>
                   <td style={{ textAlign: "right", whiteSpace: "nowrap" }}>{s.finished}{s.joined !== s.finished ? ` of ${s.joined}` : ""}</td>
-                  <td><span className="tw-code">{s.event_code}</span></td>
-                  <td><Link href={`/p/${s.event_code}/host`} style={{ color: "var(--gold-deep)" }}>{a.open} →</Link></td>
+                  <td style={{ whiteSpace: "nowrap" }}><Link href={`/p/${s.event_code}/host`} style={{ color: "var(--gold-deep)" }}>{a.open} →</Link></td>
                 </tr>
               ))}
             </tbody>
@@ -291,8 +289,6 @@ export default function AdminPage() {
             <thead>
               <tr>
                 <th>{a.colProduct}</th>
-                <th style={{ textAlign: "right" }}>{a.colTastings}</th>
-                <th style={{ textAlign: "right" }}>{a.colTasters}</th>
                 <th style={{ textAlign: "right" }}>{S.host.colPreferred}</th>
                 <th style={{ textAlign: "right" }}>{S.host.colBuy}</th>
               </tr>
@@ -300,10 +296,13 @@ export default function AdminPage() {
             <tbody>
               {products.map((p) => (
                 <tr key={p.name.toLowerCase()}>
-                  <td>{p.name}{p.mine ? " ★" : ""}{p.producer ? <span style={{ color: "var(--fg-faint)" }}> · {p.producer}</span> : null}</td>
-                  <td style={{ textAlign: "right" }}>{p.tastings}</td>
-                  <td style={{ textAlign: "right" }}>{p.tasters}</td>
-                  <td style={{ textAlign: "right", whiteSpace: "nowrap" }}>{p.preferred}{p.tasters ? ` (${Math.round((100 * p.preferred) / p.tasters)}%)` : ""}</td>
+                  <td>
+                    {p.name}{p.mine ? " ★" : ""}
+                    <div style={{ fontSize: 12.5, color: "var(--fg-faint)", marginTop: 2 }}>
+                      {[p.producer, a.tastingsTasters(p.tastings, p.tasters)].filter(Boolean).join(" · ")}
+                    </div>
+                  </td>
+                  <td style={{ textAlign: "right", whiteSpace: "nowrap" }}>{p.preferred}{p.tasters ? ` of ${p.tasters}` : ""}</td>
                   <td style={{ textAlign: "right", whiteSpace: "nowrap" }}>{p.asked ? `${p.wouldBuy} of ${p.asked}` : "—"}</td>
                 </tr>
               ))}

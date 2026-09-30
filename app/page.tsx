@@ -78,6 +78,8 @@ export default function FrontPage() {
         <details>
           <summary>{S.home.how}<Chevron /></summary>
           {S.home.howLines.map((l, i) => <p key={i}>{l}</p>)}
+          <p><Link href="/guide" style={{ color: "var(--brass-deep)" }}>{S.home.guideProducer} &rarr;</Link><br />
+            <Link href="/guide/tasting" style={{ color: "var(--brass-deep)" }}>{S.home.guideGuest} &rarr;</Link></p>
         </details>
       </section>
 
