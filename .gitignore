@@ -1,0 +1,23 @@
+/node_modules
+/.next
+/out
+/build
+.DS_Store
+*.pem
+npm-debug.log*
+.env*
+next-env.d.ts.timestamp
+.vercel
+
+# mount artefacts — never commit
+.fuse_hidden*
+
+# build artefact — regenerated on every typecheck, only creates commit noise
+tsconfig.tsbuildinfo
+
+# machine-specific Claude settings — never tracked
+.claude/
+
+# holding folder for things moved aside during the fork — delete, never commit
+_to_delete/
+tsconfig.tsbuildinfo
