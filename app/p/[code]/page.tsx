@@ -197,7 +197,7 @@ export default function GuestPage() {
               <div key={a.mat} className="tw-card2" style={{ marginBottom: 0 }}>
                 <div style={{ fontFamily: "var(--serif)", fontSize: 19 }}>{i + 1}. {a.name}</div>
                 <div style={{ fontSize: 13, color: "var(--fg-faint)", marginTop: 3 }}>
-                  {a.producer ? `${a.producer} · ` : ""}{g.was(a.mat, a.name)} · {a.price}
+                  {a.producer ? `${a.producer} · ` : ""}{g.sample(a.mat)} · {a.price}
                 </div>
                 <div style={{ fontSize: 14, color: "var(--fg-soft)", marginTop: 6 }}>
                   {g.preferred(t?.preferred ?? 0)}{t && t.asked > 0 ? ` · ${g.wouldBuy(t.wouldBuy, t.asked)}` : ""}

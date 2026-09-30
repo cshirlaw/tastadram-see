@@ -49,7 +49,7 @@ async function makeDemo(sql: ReturnType<typeof getSql>, hostId: number) {
     try {
       const rows = await sql`
         INSERT INTO sessions (host_id, name, location, event_code, currency, samples, line_up_locked, archived)
-        VALUES (${hostId}, ${DEMO_NAME}, 'Demonstration', ${code}, '£', ${samplesJson()}, true, true)
+        VALUES (${hostId}, ${DEMO_NAME}, NULL, ${code}, '£', ${samplesJson()}, true, true)
         RETURNING id, event_code`;
       return rows[0] as { id: number; event_code: string };
     } catch (err) {
